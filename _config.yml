@@ -1,0 +1,18 @@
+plugins:
+  - jekyll-relative-links
+relative_permalinks: false
+permalink: pretty
+site_favicon: favicon.ico
+include:
+  - Chinese
+  - English
+  - CONTRIBUTING.md
+  - README.md
+  - LICENSE.md
+  - COPYING.md
+  - CODE_OF_CONDUCT.md
+  - CONTRIBUTING.md
+  - ISSUE_TEMPLATE.md
+  - PULL_REQUEST_TEMPLATE.md
+title: 饥荒联机版模组开发者联盟
+theme: jekyll-theme-cayman
