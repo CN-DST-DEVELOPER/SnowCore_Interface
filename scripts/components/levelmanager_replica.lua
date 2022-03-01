@@ -1,0 +1,76 @@
+--[[ 
+
+Copyright 2022 Fengying <zxcvbnm3057@outlook.com>
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+]] --
+
+local LevelManager =
+	Class(
+	function(self, inst)
+		self.inst = inst
+
+		self._exp = net_shortint(inst.GUID, "LevelManager._exp", "onexpdirty")
+		self._max_exp = net_shortint(inst.GUID, "LevelManager._max_exp", "onmaxexpdirty")
+		self._level = net_shortint(inst.GUID, "LevelManager._level", "onleveldirty")
+		self._max_level = net_shortint(inst.GUID, "LevelManager._max_level", "onmaxleveldirty")
+
+		self._levelup = net_event(inst.GUID, "LevelManager._levelup")
+		if not TheNet:IsDedicated() then
+			inst:ListenForEvent(
+				"LevelManager._levelup",
+				function(inst)
+					inst:PushEvent("onlevelupdirty")
+				end
+			)
+		end
+
+		self.init = true
+	end
+)
+
+function LevelManager:SetExp(val)
+	self._exp:set(val)
+end
+
+function LevelManager:SetLevelMaxExp(val)
+	self._max_exp:set(val)
+end
+
+function LevelManager:SetLevel(val)
+	local old_val = self._level:value()
+	self._level:set(val)
+	local new_val = self._level:value()
+	if not self.init and new_val > old_val then
+		self._levelup:push()
+	end
+end
+
+function LevelManager:SetMaxLevel(val)
+	self._max_level:set(val)
+end
+
+-----------------------------------------------------
+
+function LevelManager:GetExp()
+	return self._exp:value()
+end
+
+function LevelManager:GetMaxExp()
+	return self._max_exp:value()
+end
+
+function LevelManager:GetLevel()
+	return self._level:value()
+end
+
+function LevelManager:GetMaxLevel()
+	return self._max_level:value()
+end
+
+return LevelManager
