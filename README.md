@@ -2,7 +2,9 @@
 
 这是一个提供了大多数mod可能用到的一些功能的通用接口mod，初衷是为了减少多个mod载入相同名称或功能的组件，这可能会导致兼容性问题，并增加服务器内存消耗。本mod仅依赖于饥荒官方内核，并对层提供拓展api及组件。bug反馈、功能建议请提交issue，参与贡献请提交pr，如果本mod中包含的源码无意中侵犯了您的权益，请联系我删除。
 
-接口文档及说明请参考wiki，下面是包含的一些组件及方法列表。
+创意工坊链接 [https://steamcommunity.com/sharedfiles/filedetails/?id=2676366172](https://steamcommunity.com/sharedfiles/filedetails/?id=2676366172)
+
+接口文档及说明请参考[wiki](https://cn-dst-developer.github.io/SnowCore_Interface)，下面是包含的一些组件及方法列表。
 
 ## components
 
